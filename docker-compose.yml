@@ -46,3 +46,14 @@ services:
       - php
     ports:
       - 80:80
+
+  angular:
+    build: ./angular/.
+    container_name: angular
+    volumes:
+      - ./sites:/home/node
+    ports:
+      - 4200:4200
+    stdin_open: true
+    tty: true
+    

@@ -1,2 +1,5 @@
-!bancos/mysql/data/*
-!bancos/postgresql/data/*
+bancos/mysql/data/*
+bancos/postgresql/data/*
+.ash_history
+sites/*
+!sites/teste
