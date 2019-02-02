@@ -2,7 +2,7 @@ version: '2'
 
 services:
   
-  db:
+  mysql:
     build: ./bancos/mysql/.
     command: --default-authentication-plugin=mysql_native_password
     restart: always
@@ -10,7 +10,7 @@ services:
     ports:
       - 3306:3306
     environment:
-      MYSQL_DATABASE: teste
+      MYSQL_DATABASE: default
       MYSQL_ROOT_PASSWORD: root
     volumes:
       - ./bancos/mysql/data:/var/lib/mysql
@@ -20,13 +20,13 @@ services:
     container_name: phpmyadmin
     restart: always
     links:
-      - db
+      - mysql
     ports:
       - 8080:80
     environment:
       MYSQL_USERNAME: root 
       MYSQL_ROOT_PASSWORD: root
-      PMA_HOST: db
+      PMA_HOST: mysql
       PMA_ARBITRARY: 1
 
   php:
@@ -34,6 +34,8 @@ services:
     container_name: php
     volumes:
       - ./sites:/var/www/html
+    ports:
+      - 9000:9000
 
   nginx:
     image: nginx:alpine
