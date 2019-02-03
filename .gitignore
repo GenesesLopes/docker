@@ -3,3 +3,6 @@ bancos/postgresql/data/*
 .ash_history
 sites/*
 !sites/teste
+nginx/*.conf
+
+

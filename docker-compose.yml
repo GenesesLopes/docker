@@ -14,6 +14,15 @@ services:
       MYSQL_ROOT_PASSWORD: root
     volumes:
       - ./bancos/mysql/data:/var/lib/mysql
+  postgres:
+    build: ./bancos/postgresql/.
+    container_name: postgres
+    environment: 
+      POSTGRES_PASSWORD: root
+    ports: 
+      - 5432:5432
+    volumes:
+      - ./bancos/postgresql/data:/var/lib/postgresql/data
   
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
@@ -36,7 +45,7 @@ services:
       - ./sites:/var/www/html
     ports:
       - 9000:9000
-
+  
   nginx:
     image: nginx:alpine
     container_name: nginx
@@ -58,4 +67,23 @@ services:
       - 4200:4200
     stdin_open: true
     tty: true
+      
+  phppgadmin:
+    build: ./phppgadmin/.
+    restart: always
+    links: 
+      - postgres
+    ports:
+      - 8081:80
+    environment: 
+      PHP_PG_ADMIN_SERVER_PG_DUMP_PATH: /usr/bin/pg_dump
+      PHP_PG_ADMIN_SERVER_PG_DUMPALL_PATH: /usr/bin/pg_dumpall
+      PHP_PG_ADMIN_SERVER_HOST: postgres
+      
+      
+
+
+
+
+    
     
