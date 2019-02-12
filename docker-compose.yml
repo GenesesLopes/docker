@@ -1,5 +1,9 @@
 version: '2'
 
+volumes:
+  data-postgres:
+    external: true
+
 services:
   
   mysql:
@@ -21,6 +25,8 @@ services:
       POSTGRES_PASSWORD: root
     ports: 
       - 5432:5432
+    #volumes:
+    #  - data-postgres:/var/lib/postgresql/data
     volumes:
       - ./bancos/postgresql/data:/var/lib/postgresql/data
   
