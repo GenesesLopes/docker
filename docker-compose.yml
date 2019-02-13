@@ -25,10 +25,10 @@ services:
       POSTGRES_PASSWORD: root
     ports: 
       - 5432:5432
-    #volumes:
-    #  - data-postgres:/var/lib/postgresql/data
     volumes:
-      - ./bancos/postgresql/data:/var/lib/postgresql/data
+      - data-postgres:/var/lib/postgresql/data
+    #volumes:
+    #  - ./bancos/postgresql/data:/var/lib/postgresql/data
   
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
