@@ -8,7 +8,7 @@ ENTRYPOINT [ "php-fpm" ]
 RUN docker-php-ext-install bcmath
 RUN set -ex \
   && apk --no-cache add \
-    postgresql-dev
+    postgresql-dev zip unzip
 RUN docker-php-ext-install pdo_pgsql
 RUN docker-php-ext-install pdo_mysql 
 

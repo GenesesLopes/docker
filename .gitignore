@@ -1,11 +1,15 @@
-
+bancos/mysql/*
+bancos/postgresql/*
 !bancos/mysql/Dockerfile
 !bancos/postgresql/Dockerfile
 .ash_history
 sites/*
 !sites/teste
 nginx/*.conf
-
+apache/*
+!apache/sites-avaliable/000-default.conf
+!apache/sites-avaliable/default-ssl.conf
+!apache/sites-avaliable/000-default.conf
 .vscode
 
 

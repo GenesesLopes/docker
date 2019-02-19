@@ -6,7 +6,6 @@ volumes:
   data-mysql:
     external: false
 
-
 services:
   
   mysql:
@@ -69,11 +68,13 @@ services:
   apache:
     build: ./apache/.
     container_name: apache
+    restart: always
     volumes:
       - ./sites:/var/www/html
       - ./apache/sites-avaliable:/etc/apache2/sites-available
     ports:
       - 80:80
+      - 9000:9000
 
   angular:
     build: ./angular/.
