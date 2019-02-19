@@ -2,7 +2,10 @@ version: '2'
 
 volumes:
   data-postgres:
-    external: true
+    external: false
+  data-mysql:
+    external: false
+
 
 services:
   
@@ -17,7 +20,8 @@ services:
       MYSQL_DATABASE: default
       MYSQL_ROOT_PASSWORD: root
     volumes:
-      - ./bancos/mysql/data:/var/lib/mysql
+      - data-mysql:/var/lib/mysql
+  
   postgres:
     build: ./bancos/postgresql/.
     container_name: postgres
@@ -27,8 +31,6 @@ services:
       - 5432:5432
     volumes:
       - data-postgres:/var/lib/postgresql/data
-    #volumes:
-    #  - ./bancos/postgresql/data:/var/lib/postgresql/data
   
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
@@ -61,6 +63,15 @@ services:
       - ./nginx:/etc/nginx/conf.d
     links:
       - php
+    ports:
+      - 80:80
+  
+  apache:
+    build: ./apache/.
+    container_name: apache
+    volumes:
+      - ./sites:/var/www/html
+      - ./apache/sites-avaliable:/etc/apache2/sites-available
     ports:
       - 80:80
 

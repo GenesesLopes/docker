@@ -1,8 +1,12 @@
-bancos/mysql/data/*
-bancos/postgresql/data/*
+
+!bancos/mysql/Dockerfile
+!bancos/postgresql/Dockerfile
 .ash_history
 sites/*
 !sites/teste
 nginx/*.conf
+
+.vscode
+
 
 
