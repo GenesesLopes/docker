@@ -7,7 +7,7 @@ creation of work development in docker
   * Postgresql
   * MySql
   * PhpMyadmin
-  * PhhPgadmin
+  * PhPgadmin
   * PHP - Com composer
   * Angular
 
