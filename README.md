@@ -30,6 +30,15 @@ creation of work development in docker
  *  Baixar VSCode: https://code.visualstudio.com/<br>
  *  Instalar plugin do docker: https://marketplace.visualstudio.com/items?itemName=PeterJausovec.vscode-docker&ssr=true<br>
 
+* Criando containers
+
+  * Criando volumes para postgres e mysql<br>
+    <code>$ docker create volume data-postgres</code><br>
+    <code>$ docker create volume data-mysql</code><br>
+  * Editar o arquivo <code>.env</code> de acordo as suas necessidades.<br>
+  * Instanciar container com o serguinte comando:
+    <code>$ docker-compose up -d serviço1 serviço2 ...</code><br><br>
+
 * Configuração de VirtualHost nos containers Apache e Nginx
 
   * Apache<br>
@@ -48,15 +57,7 @@ creation of work development in docker
       <code>server_name site.dev;</code> (Colocar o dominio local criado).<br>
     2 - Reiniciar o container pelo vscode.<br>
     3 - Caso queira criar mais VirtualHost, crie uma copia do arquivo <code>sites.conf</code> na mesma pasta, renomeie-o de acordo a sua escolha (ex.: projeto.conf) e repita o processo adaptando-se ao novo arquivo criado.<br>
-
-* Criando containers
-
-  * Criando volumes para postgres e mysql<br>
-    <code>$ docker create volume data-postgres</code><br>
-    <code>$ docker create volume data-mysql</code><br>
-  * Editar o arquivo <code>.env</code> de acordo as suas necessidades.<br>
-  * Instanciar container com o serguinte comando:
-    <code>$ docker-compose up -d serviço1 serviço2 ...</code><br><br>
+    
  A partir de agora a gerência dos containers será através do VScode (iniciar e parar).
   
   
