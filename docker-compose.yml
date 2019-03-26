@@ -14,10 +14,10 @@ services:
     restart: always
     container_name: mysql
     ports:
-      - 3306:3306
+      - ${MYSQL_PORT}:3306
     environment:
       MYSQL_DATABASE: default
-      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
     volumes:
       - data-mysql:/var/lib/mysql
   
@@ -25,9 +25,9 @@ services:
     build: ./bancos/postgresql/.
     container_name: postgres
     environment: 
-      POSTGRES_PASSWORD: root
+      POSTGRES_PASSWORD: ${PGSQL_PASSWORD}
     ports: 
-      - 5432:5432
+      - ${PGSQL_PORT}:5432
     volumes:
       - data-postgres:/var/lib/postgresql/data
   
@@ -38,10 +38,10 @@ services:
     links:
       - mysql
     ports:
-      - 8080:80
+      - ${PHPMYADMIN_PORT}:80
     environment:
       MYSQL_USERNAME: root 
-      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
       PMA_HOST: mysql
       PMA_ARBITRARY: 1
 
@@ -63,7 +63,7 @@ services:
     links:
       - php
     ports:
-      - 80:80
+      - ${NGINX_PORT}:80
   
   apache:
     build: ./apache/.
@@ -73,7 +73,7 @@ services:
       - ./sites:/var/www/html
       - ./apache/sites-avaliable:/etc/apache2/sites-available
     ports:
-      - 80:80
+      - ${APACHE_PORT}:80
       - 9000:9000
 
   angular:
@@ -82,7 +82,7 @@ services:
     volumes:
       - ./sites:/home/node
     ports:
-      - 4200:4200
+      - ${ANGULAR_PORT}:4200
     stdin_open: true
     tty: true
       
@@ -92,7 +92,7 @@ services:
     links: 
       - postgres
     ports:
-      - 8081:80
+      - ${PHPPGADMIN_PORT}:80
     environment: 
       PHP_PG_ADMIN_SERVER_PG_DUMP_PATH: /usr/bin/pg_dump
       PHP_PG_ADMIN_SERVER_PG_DUMPALL_PATH: /usr/bin/pg_dumpall
