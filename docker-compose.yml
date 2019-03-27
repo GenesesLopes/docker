@@ -85,6 +85,16 @@ services:
       - ${ANGULAR_PORT}:4200
     stdin_open: true
     tty: true
+  
+  react:
+    build: ./react/.
+    container_name: react
+    volumes:
+      - ./sites:/home/node
+    ports:
+      - ${REACT_PORT}:3000
+    stdin_open: true
+    tty: true
       
   phppgadmin:
     build: ./phppgadmin/.
