@@ -10,6 +10,7 @@ creation of work development in docker
   * PhPgadmin
   * PHP - Com composer
   * Angular
+  * React
 
 <strong>Para usuários do docker toolbox, o projeto deve ser clonado dentro da pasta pessoal do usuário</strong><br>
 
