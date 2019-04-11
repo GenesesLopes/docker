@@ -1,4 +1,4 @@
-version: '2'
+version: '3'
 
 volumes:
   data-postgres:
@@ -26,6 +26,7 @@ services:
     container_name: postgres
     environment: 
       POSTGRES_PASSWORD: ${PGSQL_PASSWORD}
+      # TZ: "America/Bahia"
     ports: 
       - ${PGSQL_PORT}:5432
     volumes:
@@ -35,7 +36,7 @@ services:
     image: phpmyadmin/phpmyadmin
     container_name: phpmyadmin
     restart: always
-    links:
+    depends_on:
       - mysql
     ports:
       - ${PHPMYADMIN_PORT}:80
@@ -55,12 +56,11 @@ services:
   
   nginx:
     image: nginx:alpine
-    container_name: nginx
-    volumes_from:
-      - php
+    container_name: nginx  
     volumes:
       - ./nginx:/etc/nginx/conf.d
-    links:
+      - ./sites:/var/www/html
+    depends_on:
       - php
     ports:
       - ${NGINX_PORT}:80
@@ -99,7 +99,7 @@ services:
   phppgadmin:
     build: ./phppgadmin/.
     restart: always
-    links: 
+    depends_on: 
       - postgres
     ports:
       - ${PHPPGADMIN_PORT}:80

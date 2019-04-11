@@ -1,6 +1,9 @@
 FROM postgres:alpine
 
-#VOLUME [ "/var/lib/postgresql/data" ]
+RUN cp /usr/share/zoneinfo/America/Bahia /etc/localtime && echo "America/Bahia" > /etc/timezone
+
+ENV TZ="America/Bahia"
+ENV PGTZ="America/Bahia"
 
 USER postgres
 
