@@ -2,7 +2,7 @@ FROM node:alpine
 
 ENV HOME=/home/node
 
-RUN chmod -R 777 $HOME
+RUN apk update && apk add git && chmod -R 777 $HOME
 
 WORKDIR $HOME
 
