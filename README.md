@@ -2,7 +2,7 @@
 creation of work development in docker
 
 * Serviços Disponíveis
-  * Apache
+  * Apache - Com Php
   * Nginx
   * Postgresql
   * MySql
