@@ -18,7 +18,7 @@ RUN docker-php-ext-configure gd \
   apk del --no-cache freetype-dev libpng-dev libjpeg-turbo-dev
 RUN docker-php-ext-install pdo_pgsql pdo_mysql exif zip bcmath
 RUN echo "America/Bahia" > /etc/TZ && cp /usr/share/zoneinfo/America/Bahia /etc/localtime && echo "America/Bahia" > /etc/timezone && \
-sed "s/;date.timezone =/date.timezone = America\/Bahia/g" /usr/local/etc/php/php.ini-production  > /usr/local/etc/php/php.ini
+sed "s/;date.timezone =/date.timezone = America\/Bahia/g" /usr/local/etc/php/php.ini-development  > /usr/local/etc/php/php.ini
 
 
 
