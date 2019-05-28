@@ -8,7 +8,7 @@ docker-php-ext-install -j$(nproc) iconv && docker-php-ext-configure gd --with-fr
 && a2enmod rewrite
 
 RUN chmod -R 777 /var/www/html && rm /etc/localtime && ln -s /usr/share/zoneinfo/America/Bahia /etc/localtime && echo "America/Bahia" > /etc/timezone && \
-sed "s/;date.timezone =/date.timezone = America\/Bahia/g" /usr/local/etc/php/php.ini-production  > /usr/local/etc/php/php.ini
+sed "s/;date.timezone =/date.timezone = America\/Bahia/g" /usr/local/etc/php/php.ini-development  > /usr/local/etc/php/php.ini
 
 
 EXPOSE 80 9000
