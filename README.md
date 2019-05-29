@@ -36,7 +36,7 @@ creation of work development in docker
   * Criando volumes para postgres e mysql (Obs.: Comandos apenas se tiver erro de criação de volumes para bases de dados)<br>
     <code>$ docker create volume data-postgres</code><br>
     <code>$ docker create volume data-mysql</code><br>
-  * Editar o arquivo <code>.env</code> de acordo as suas necessidades.<br>
+  * Editar o arquivo <code>.env</code> de acordo as suas necessidades (Porta de uso, senha e etc...).<br>
   * Instanciar container com o serguinte comando:
     <code>$ docker-compose up -d serviço1 serviço2 ...</code><br><br>
 
