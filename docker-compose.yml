@@ -95,7 +95,17 @@ services:
       - ${REACT_PORT}:3000
     stdin_open: true
     tty: true
-      
+  
+  react-native:
+    build: ./react-native/.
+    container_name: react-native
+    ports:
+      - 3000:3000
+    volumes:
+      - ./react-native/Android:/home/node/Android/Sdk
+    stdin_open: true
+    tty: true
+
   phppgadmin:
     build: ./phppgadmin/.
     restart: always
