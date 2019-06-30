@@ -101,8 +101,13 @@ services:
     container_name: react-native
     ports:
       - 3000:3000
+      - 19000:19000
+      - 19001:19001
+      - 8081:8081
+      - 5037:5037
+      - 5555:5555
     volumes:
-      - ./react-native/Android:/home/node/Android/Sdk
+      - ./react-native/Android:/home/node
     stdin_open: true
     tty: true
 

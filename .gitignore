@@ -11,6 +11,7 @@ apache/*
 !apache/sites-avaliable/default-ssl.conf
 !apache/sites-avaliable/000-default.conf
 .vscode
+react-native/Android/*
 
 
 
