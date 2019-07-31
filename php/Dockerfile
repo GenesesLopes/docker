@@ -15,7 +15,7 @@ RUN docker-php-ext-configure gd \
     --with-jpeg-dir=/usr/include/ && \
   NPROC=$(grep -c ^processor /proc/cpuinfo 2>/dev/null || 1) && \
   docker-php-ext-install -j${NPROC} gd && \
-  apk del --no-cache freetype-dev libpng-dev libjpeg-turbo-dev && pecl install mongodb-1.2.5
+  apk del --no-cache freetype-dev libpng-dev libjpeg-turbo-dev && pecl install mongodb
 RUN docker-php-ext-enable mongodb
 RUN docker-php-ext-install pdo_pgsql pdo_mysql exif zip bcmath
 RUN echo "America/Bahia" > /etc/TZ && cp /usr/share/zoneinfo/America/Bahia /etc/localtime && echo "America/Bahia" > /etc/timezone && \
