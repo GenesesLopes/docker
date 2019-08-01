@@ -22,12 +22,12 @@ apt-get install -y openjdk-8-jdk && apt-get install adb -y
 #RUN mkdir -p /home/node/Android/Sdk && mv tools Android/Sdk/.
 # adb kill-server && adb start-server && react-native init Projeto
 RUN echo "export ANDROID_HOME=/home/node/Android/Sdk" >> /etc/bash.bashrc && \
-echo "export PATH=$PATH:$ANDROID_HOME/tools" >> /etc/bash.bashrc && \ 
-echo "export PATH=$PATH:$ANDROID_HOME/platform-tools" >> /etc/bash.bashrc
+echo "export PATH=$PATH:/home/node/Android/Sdk/tools" >> /etc/bash.bashrc && \ 
+echo "export PATH=$PATH:/home/node/Android/Sdk/platform-tools" >> /etc/bash.bashrc
 
 #RUN /home/node/Android/Sdk/tools/bin/sdkmanager "platform-tools" "platforms;android-27" "build-tools;27.0.3"
 
-EXPOSE 3000 19000 19001 8081 5037 5555
+#EXPOSE 3000 19000 19001 8081 5037 5555
 
 CMD ["/bin/bash"]
 
