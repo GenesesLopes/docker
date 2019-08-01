@@ -11,6 +11,8 @@ creation of work development in docker
   * PHP - Com composer
   * Angular
   * React
+  * Mongodb
+  * Mongo Express
 
 <strong>Para usuários do docker toolbox, o projeto deve ser clonado dentro da pasta pessoal do usuário</strong><br>
 
