@@ -2,6 +2,6 @@
 
 //phpinfo();
 
-echo 'index';
+echo 'index'; 
 
 ?>
