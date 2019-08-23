@@ -4,7 +4,7 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 EXPOSE 9000
 
 ENTRYPOINT [ "php-fpm" ]
-RUN apk add --no-cache freetype libpng libjpeg-turbo freetype-dev libpng-dev libjpeg-turbo-dev libzip-dev $PHPIZE_DEPS openssl-dev
+RUN apk add --no-cache freetype libpng libjpeg-turbo freetype-dev nano libpng-dev libjpeg-turbo-dev libzip-dev $PHPIZE_DEPS openssl-dev
 RUN set -ex \
   && apk --no-cache add \
     postgresql-dev zip unzip tzdata
