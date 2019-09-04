@@ -13,6 +13,7 @@ creation of work development in docker
   * React
   * Mongodb
   * Mongo Express
+  * Redis
 
 <strong>Para usuários do docker toolbox, o projeto deve ser clonado dentro da pasta pessoal do usuário</strong><br>
 

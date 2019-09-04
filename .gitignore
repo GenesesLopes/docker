@@ -1,6 +1,8 @@
 bancos/mysql/*
 bancos/postgresql/*
 bancos/mongo/db/*
+bancos/redis/db/*
+!bancos/redis/db
 !bancos/mongo/db
 !bancos/mysql/Dockerfile
 !bancos/postgresql/Dockerfile
