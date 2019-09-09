@@ -17,7 +17,7 @@ RUN docker-php-ext-configure gd \
   docker-php-ext-install -j${NPROC} gd && \
   apk del --no-cache freetype-dev libpng-dev libjpeg-turbo-dev && pecl install mongodb
 RUN docker-php-ext-enable mongodb
-RUN docker-php-ext-install pdo_pgsql pdo_mysql exif zip bcmath
+RUN docker-php-ext-install pdo_pgsql pdo_mysql mysqli pgsql exif zip bcmath
 RUN echo "America/Bahia" > /etc/TZ && cp /usr/share/zoneinfo/America/Bahia /etc/localtime && echo "America/Bahia" > /etc/timezone && \
 sed "s/;date.timezone =/date.timezone = America\/Bahia/g" /usr/local/etc/php/php.ini-development  > /usr/local/etc/php/php.ini && \
 sed -i "s/expose_php = On/expose_php = Off/g" /usr/local/etc/php/php.ini  
