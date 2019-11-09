@@ -1,4 +1,4 @@
-FROM postgres:alpine
+FROM postgres:11-alpine
 
 RUN cp /usr/share/zoneinfo/America/Bahia /etc/localtime && echo "America/Bahia" > /etc/timezone \
 && apk add nano

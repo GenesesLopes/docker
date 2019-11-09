@@ -161,7 +161,47 @@ services:
       - ./bancos/redis/db:/data
     command: redis-server --appendonly yes
 
-
-
-    
-    
+  firebird:
+    build: ./bancos/firebird/.
+    container_name: firebird
+    ports:
+      - ${FIREBIRD_PORT}:3050
+    environment:
+      #TZ: America/Bahia
+      ISC_PASSWORD: ${ISC_PASSWORD}
+      FIREBIRD_DATABASE: ${FIREBIRD_DATABASE}
+      # FIREBIRD_USER: ${FIREBIRD_USER}
+      # FIREBIRD_PASSWORD: ${FIREBIRD_PASSWORD}
+    volumes:
+      - ./bancos/firebird/db:/firebird/data
+      - ./bancos/firebird/etc:/firebird/etc
+    # stdin_open: true
+    # tty: true
+  
+  monitor_docker:
+    image: google/cadvisor:latest
+    restart: always
+    ports:
+      - ${MONITOR_DOCKER}:8080
+    container_name: cadvisor
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+      - /dev/disk/:/dev/disk:ro
+  
+  ngrok:
+    build: ./ngrok/.
+    container_name: ngrok
+    volumes:
+      - ./sites:/var/www/html
+      - ./ngrok/configuracoes/ngrok.yml:/home/ngrok/.ngrok2/ngrok.yml
+    ports:
+      - 4040:4040
+    environment:
+      NGROK_BINDTLS: 'false'
+    entrypoint:
+      - ngrok
+      - start
+      - --all
