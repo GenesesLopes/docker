@@ -19,6 +19,8 @@ creation of work development in docker
 
 <strong>Todos os projetos web devem ficar na pasta sites</strong>
 
+<strong>Caso utilizar o autocomplete do terminal (ZSH), alterar configuração de extensão do docker em "arquivo->preferencias->configurações->extensões->Docker", alterar o campo "Docker › Attach Shell Command: Linux Container" de /bin/sh -c "[ -e /bin/bash ] && /bin/bash || /bin/sh" para /bin/sh -c "[ -e /bin/bash ] && /bin/bash || /bin/zsh 2> /dev/null || /bin/sh "</strong><br>
+
 * Configurando Dominio Local
 
   * Windows<br>
