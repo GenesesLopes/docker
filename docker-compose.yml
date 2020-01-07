@@ -52,12 +52,17 @@ services:
       PMA_ARBITRARY: 1
 
   php:
-    build: ./php/.
+    build: 
+      context: ./php
+      args: 
+        - AUTOCOMPLETE=${AUTOCOMPLETE_PHP_NGINX}
     container_name: php
+    
     volumes:
       - ./sites:/var/www/html
     ports:
       - 9000:9000
+      - 9001:9001
   
   nginx:
     image: nginx:alpine
