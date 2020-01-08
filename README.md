@@ -19,9 +19,9 @@ creation of work development in docker
   - Mongo Express
   - Redis
 
-### Para usuários do docker toolbox, o projeto deve ser clonado dentro da pasta pessoal do usuário
+#### :warning: Para usuários do docker toolbox, o projeto deve ser clonado dentro da pasta pessoal do usuário
 
-### Todos os projetos web devem ficar na pasta `sites`.
+#### :warning: Todos os projetos web devem ficar na pasta `sites`.
 
 # Iniciando :tada:
 
