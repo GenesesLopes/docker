@@ -9,11 +9,11 @@ bancos/redis/db/*
 .ash_history
 sites/*
 !sites/teste
-nginx/*.conf
+!nginx/*.conf
 apache/*
-!apache/sites-avaliable/000-default.conf
-!apache/sites-avaliable/default-ssl.conf
-!apache/sites-avaliable/000-default.conf
+!apache/Dockerfile
+!apache/sites-avaliable/
+
 ngrok/configuracoes/ngrok.yml
 .vscode
 docker-compose.yml

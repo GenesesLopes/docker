@@ -1,6 +1,4 @@
 ARG REACT_IMAGE=node:14.2-stretch
-ARG UID=1000 
-ARG GID=1000
 FROM ${REACT_IMAGE}
 
 ENV HOME=/home/node
