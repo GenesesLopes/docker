@@ -16,7 +16,7 @@ apache/*
 !apache/sites-avaliable/000-default.conf
 ngrok/configuracoes/ngrok.yml
 .vscode
-.docker-compose-yml
+docker-compose-yml
 .env
 
 
