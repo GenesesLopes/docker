@@ -14,8 +14,11 @@ apache/*
 !apache/sites-avaliable/000-default.conf
 !apache/sites-avaliable/default-ssl.conf
 !apache/sites-avaliable/000-default.conf
+ngrok/configuracoes/ngrok.yml
 .vscode
-react-native/Android/*
+.docker-compose-yml
+.env
+
 
 
 

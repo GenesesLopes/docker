@@ -1,4 +1,5 @@
-FROM wernight/ngrok
+ARG NGROK_IMAGE=wernight/ngrok:latest
+FROM ${NGROK_IMAGE}
 
 USER root
 

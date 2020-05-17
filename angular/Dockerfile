@@ -1,4 +1,6 @@
-FROM node:alpine
+ARG ANGULAR_IMAGE=node:14.2-stretch
+
+FROM ${ANGULAR_IMAGE}
 
 ENV HOME=/home/node
 
@@ -11,4 +13,4 @@ RUN npm install -g @angular/cli --silent --progress=false
 
 EXPOSE 4200
 
-ENTRYPOINT [ "/bin/sh" ]
+ENTRYPOINT [ "/bin/bash" ]

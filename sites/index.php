@@ -1,7 +1,0 @@
-<?php
-
-//phpinfo();
-
-echo 'index'; 
-
-?>

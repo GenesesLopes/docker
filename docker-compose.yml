@@ -1,4 +1,4 @@
-version: '3'
+version: '3.5'
 
 volumes:
   data-postgres:
@@ -10,11 +10,14 @@ volumes:
 #  mobile:
 #    driver: ${NETWORKS_DRIVER}
 
-
 services:
   
   mysql:
-    build: ./bancos/mysql/.
+    build: 
+      context: ./bancos/mysql/.
+      args: 
+        - MYSQL_IMAGE=${MYSQL_IMAGE}
+        - MYSQL_PORT=${MYSQL_PORT}
     command: --default-authentication-plugin=mysql_native_password
     restart: always
     container_name: mysql
@@ -27,18 +30,21 @@ services:
       - data-mysql:/var/lib/mysql
   
   postgres:
-    build: ./bancos/postgresql/.
+    build: 
+      context: ./bancos/postgresql/.
+      args:
+        - PGSQL_IMAGE=${PGSQL_IMAGE}
+        - PGSQL_PORT=${PGSQL_PORT}
     container_name: postgres
     environment: 
       POSTGRES_PASSWORD: ${PGSQL_PASSWORD}
-      # TZ: "America/Bahia"
     ports: 
       - ${PGSQL_PORT}:5432
     volumes:
       - data-postgres:/var/lib/postgresql/data
   
   phpmyadmin:
-    image: phpmyadmin/phpmyadmin
+    image: ${PHPMYADMIN_IMAGE}
     container_name: phpmyadmin
     restart: always
     depends_on:
@@ -56,27 +62,28 @@ services:
       context: ./php
       args: 
         - AUTOCOMPLETE=${AUTOCOMPLETE_PHP_NGINX}
+        - PHP_IMAGE=${PHP_IMAGE}
     container_name: php
-    
     volumes:
       - ./sites:/var/www/html
     ports:
       - 9000:9000
-      - 9001:9001
-  
+
   nginx:
-    image: nginx:alpine
+    image: ${NGINX_IMAGE}
     container_name: nginx  
     volumes:
       - ./nginx:/etc/nginx/conf.d
       - ./sites:/var/www/html
-    depends_on:
-      - php
     ports:
       - ${NGINX_PORT}:80
   
   apache:
-    build: ./apache/.
+    build:
+      context: ./apache/.
+      args: 
+        - APACHE_IMAGE=${APACHE_IMAGE}
+        - APACHE_PORT=${APACHE_PORT}
     container_name: apache
     restart: always
     volumes:
@@ -87,7 +94,10 @@ services:
       - 9000:9000
 
   angular:
-    build: ./angular/.
+    build:
+      context: ./angular/.
+      args: 
+        - ANGULAR_IMAGE=${ANGULAR_IMAGE}
     container_name: angular
     volumes:
       - ./sites:/home/node
@@ -97,7 +107,11 @@ services:
     tty: true
   
   react:
-    build: ./react/.
+    build:
+      context: ./react/.
+      args: 
+        - REACT_IMAGE=${REACT_IMAGE}
+        - REACT_PORT=${REACT_PORT}
     container_name: react
     volumes:
       - ./sites:/home/node
@@ -136,12 +150,13 @@ services:
       PHP_PG_ADMIN_SERVER_HOST: postgres
   
   mongo:
-    image: mongo
+    image: ${MONGO_IMAGE}
     restart: always
-    expose:
-      - "27017"
-    volumes:
-      - ./bancos/mongo/db:/data/db
+    container_name: mongo
+    ports:
+      - ${MONGO_PORT}:27017
+    #volumes:
+    #  - ./bancos/mongo/db:/data/db
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD}
@@ -149,6 +164,7 @@ services:
   mongo-express:
     image: mongo-express
     restart: always
+    container_name: mongo-express
     depends_on:
       - mongo
     ports:
@@ -158,8 +174,8 @@ services:
       ME_CONFIG_MONGODB_ADMINPASSWORD: ${MONGO_PASSWORD}
       
   redis:
-    image: redis
-    restart: always
+    image: ${REDIS_IMAGE}
+    container_name: redis
     ports:
       - ${REDIS_PORT}:6379
     volumes:
@@ -167,7 +183,10 @@ services:
     command: redis-server --appendonly yes
 
   firebird:
-    build: ./bancos/firebird/.
+    build: 
+      context: ./bancos/firebird/.
+      args: 
+        - FIREBIRD_IMAGE=${FIREBIRD_IMAGE}
     container_name: firebird
     ports:
       - ${FIREBIRD_PORT}:3050
@@ -197,15 +216,18 @@ services:
       - /dev/disk/:/dev/disk:ro
   
   ngrok:
-    build: ./ngrok/.
+    build:
+      context: ./ngrok/.
+      args: 
+        - NGROK_IMAGE=${NGROK_IMAGE}
     container_name: ngrok
     volumes:
       - ./sites:/var/www/html
       - ./ngrok/configuracoes/ngrok.yml:/home/ngrok/.ngrok2/ngrok.yml
     ports:
-      - 4040:4040
-    environment:
-      NGROK_BINDTLS: 'false'
+      - ${NGROK_PORT}:4040
+    #environment:
+    #  NGROK_BINDTLS: 'false'
     entrypoint:
       - ngrok
       - start

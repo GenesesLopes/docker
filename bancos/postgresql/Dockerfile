@@ -1,4 +1,5 @@
-FROM postgres:11-alpine
+ARG PGSQL_IMAGE=postgres:11-alpine
+FROM ${PGSQL_IMAGE}
 
 RUN cp /usr/share/zoneinfo/America/Bahia /etc/localtime && echo "America/Bahia" > /etc/timezone \
 && apk add nano

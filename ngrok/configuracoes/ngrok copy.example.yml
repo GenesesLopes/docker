@@ -1,6 +1,6 @@
 web_addr: 0.0.0.0:4040
 tunnels:
-  cambiante:
+  localhost:
     proto: http
     addr: nginx:80
-    host_header: site.local
+    host_header: localhost

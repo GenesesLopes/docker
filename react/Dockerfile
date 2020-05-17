@@ -1,9 +1,9 @@
-FROM node:stretch
+ARG REACT_IMAGE=node:14.2-stretch
+FROM ${REACT_IMAGE}
 
 ENV HOME=/home/node
 
-RUN apk update && apk add git && chmod -R 777 $HOME
-#RUN apt update && apt install git && chmod -R 777 $HOME
+RUN apt update && apt install git && chmod -R 777 $HOME
 
 WORKDIR $HOME
 
@@ -11,5 +11,4 @@ RUN npm install -g create-react-app
 
 EXPOSE 3000
 
-ENTRYPOINT [ "/bin/sh" ]
-#ENTRYPOINT [ "/bin/bash" ]
+ENTRYPOINT [ "/bin/bash" ]
