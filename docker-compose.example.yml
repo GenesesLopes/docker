@@ -6,10 +6,6 @@ volumes:
   data-mysql:
     external: false
 
-#networks:
-#  mobile:
-#    driver: ${NETWORKS_DRIVER}
-
 services:
   
   mysql:
@@ -61,12 +57,12 @@ services:
     build: 
       context: ./php
       args: 
-        - AUTOCOMPLETE=${AUTOCOMPLETE_PHP_NGINX}
         - PHP_IMAGE=${PHP_IMAGE}
     container_name: php
     user: ${UID}:${GID}
     volumes:
-      - ./sites:/var/www/html
+      - ./projetos:/var/www/html
+      - ./php/cron:/etc/periodic/minute
     ports:
       - 9000:9000
 
@@ -75,9 +71,10 @@ services:
     container_name: nginx  
     volumes:
       - ./nginx:/etc/nginx/conf.d
-      - ./sites:/var/www/html
+      - ./projetos:/var/www/html
     ports:
       - ${NGINX_PORT}:80
+      - 443:443
   
   apache:
     build:
@@ -85,15 +82,18 @@ services:
       args: 
         - APACHE_IMAGE=${APACHE_IMAGE}
         - APACHE_PORT=${APACHE_PORT}
+        - DOCUMENT_ROOT=${DOCUMENT_ROOT}
     container_name: apache
     user: ${UID}:${GID}
     restart: always
     volumes:
-      - ./sites:/var/www/html
+      - ./projetos:${DOCUMENT_ROOT}
       - ./apache/sites-avaliable:/etc/apache2/sites-available
+      - ./apache/ssl:/etc/apache2/ssl
     ports:
       - ${APACHE_PORT}:80
       - 9000:9000
+      - 443:443
 
   angular:
     build:
@@ -103,7 +103,7 @@ services:
     container_name: angular
     user: ${UID}:${GID}
     volumes:
-      - ./sites:/home/node
+      - ./projetos:/home/node
     ports:
       - ${ANGULAR_PORT}:4200
     stdin_open: true
@@ -117,30 +117,14 @@ services:
         - REACT_PORT=${REACT_PORT}
     container_name: react
     user: ${UID}:${GID}
+    privileged: true
     volumes:
-      - ./sites:/home/node
+      - ./projetos:/home/node
     ports:
       - ${REACT_PORT}:3000
     stdin_open: true
     tty: true
   
-  react-native:
-    build: ./react-native/.
-    container_name: react-native
-    ports:
-      - 3000:3000
-      - 19000:19000
-      - 19001:19001
-      - 8081:8081
-      - 5037:5037
-      - 5555:5555
-    volumes:
-      - ./react-native/Android:/home/node
-    #networks: 
-    #  - mobile
-    stdin_open: true
-    tty: true
-
   phppgadmin:
     build: ./phppgadmin/.
     restart: always
@@ -226,7 +210,6 @@ services:
         - NGROK_IMAGE=${NGROK_IMAGE}
     container_name: ngrok
     volumes:
-      - ./sites:/var/www/html
       - ./ngrok/configuracoes/ngrok.yml:/home/ngrok/.ngrok2/ngrok.yml
     ports:
       - ${NGROK_PORT}:4040

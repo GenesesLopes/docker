@@ -4,7 +4,7 @@ FROM ${ANGULAR_IMAGE}
 
 ENV HOME=/home/node
 
-RUN chmod -R 777 $HOME
+RUN apt update && apt install git nano -y && chmod -R 777 $HOME && chmod -R 777 /usr/local/lib/node_modules && chmod -R 777 /usr/local/bin
 
 WORKDIR $HOME
 

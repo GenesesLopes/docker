@@ -10,17 +10,6 @@ bancos/redis/db/*
 projetos/*
 !projetos/index.html
 !projetos/teste
-nginx/*
-!nginx/site.conf
-!nginx/default.conf
-!nginx/ssl
-apache/*
-!apache/Dockerfile
-!apache/ssl
-!apache/vhost.conf
-!apache/sites-avaliable/000-default.conf
-!apache/sites-avaliable/default-ssl.conf
-!apache/sites-avaliable/site.conf
 ngrok/configuracoes/ngrok.yml
 .vscode
 docker-compose.yml

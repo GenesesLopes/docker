@@ -19,3 +19,4 @@ WORKDIR ${DOCUMENT_ROOT}
 ENTRYPOINT ["/opt/docker/bin/entrypoint.sh"]
 
 CMD ["supervisord"]
+
