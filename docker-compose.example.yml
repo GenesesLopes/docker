@@ -128,6 +128,7 @@ services:
   phppgadmin:
     build: ./phppgadmin/.
     restart: always
+    container_name: phppgadmin
     depends_on: 
       - postgres
     ports:
@@ -193,6 +194,7 @@ services:
   monitor_docker:
     image: google/cadvisor:latest
     restart: always
+    container_name: monitor
     ports:
       - ${MONITOR_DOCKER}:8080
     container_name: cadvisor
