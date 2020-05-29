@@ -5,7 +5,8 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 #instalando softwares auxiliares
 RUN apt-get update && apt-get upgrade -y && apt-get install nano tzdata -y 
 #Timezone
-RUN echo "America/Bahia" > /etc/TZ && cp /usr/share/zoneinfo/America/Bahia /etc/localtime
+RUN echo "America/Bahia" > /etc/TZ && cp /usr/share/zoneinfo/America/Bahia /etc/localtime \
+&& mkdir /.composer && chmod -R 777 /.composer;
 
 ARG DOCUMENT_ROOT=/var/www
 ENV WEB_DOCUMENT_ROOT=${DOCUMENT_ROOT}

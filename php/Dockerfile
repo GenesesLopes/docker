@@ -37,7 +37,7 @@ RUN echo "xdebug.remote_autostart=1" | tee -a /usr/local/etc/php/conf.d/docker-p
 
 #Cron
 
-RUN mkdir /etc/periodic/minute && chmod a+x -R /etc/periodic/minute && chmod -R 777 /etc/crontabs/root;
+RUN mkdir /etc/periodic/minute && chmod a+x -R /etc/periodic/minute && chmod -R 777 /etc/crontabs/root && mkdir /.composer && chmod -R 777 /.composer;
 RUN crontab -l | { cat; echo "*       *       *       *       *       run-parts /etc/periodic/minute"; } | crontab -
 
 #ENTRYPOINT [ "php-fpm" ];
