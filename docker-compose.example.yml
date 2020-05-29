@@ -64,6 +64,7 @@ services:
         - AUTOCOMPLETE=${AUTOCOMPLETE_PHP_NGINX}
         - PHP_IMAGE=${PHP_IMAGE}
     container_name: php
+    user: ${UID}:${GID}
     volumes:
       - ./sites:/var/www/html
     ports:
@@ -85,6 +86,7 @@ services:
         - APACHE_IMAGE=${APACHE_IMAGE}
         - APACHE_PORT=${APACHE_PORT}
     container_name: apache
+    user: ${UID}:${GID}
     restart: always
     volumes:
       - ./sites:/var/www/html
@@ -99,6 +101,7 @@ services:
       args: 
         - ANGULAR_IMAGE=${ANGULAR_IMAGE}
     container_name: angular
+    user: ${UID}:${GID}
     volumes:
       - ./sites:/home/node
     ports:
@@ -113,6 +116,7 @@ services:
         - REACT_IMAGE=${REACT_IMAGE}
         - REACT_PORT=${REACT_PORT}
     container_name: react
+    user: ${UID}:${GID}
     volumes:
       - ./sites:/home/node
     ports:

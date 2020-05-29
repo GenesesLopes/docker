@@ -3,7 +3,7 @@ FROM ${REACT_IMAGE}
 
 ENV HOME=/home/node
 
-RUN apt update && apt install git && chmod -R 777 $HOME
+RUN apt update && apt install git nano && chmod -R 777 $HOME
 
 WORKDIR $HOME
 

@@ -1,18 +1,21 @@
-ARG APACHE_IMAGE=php:7.4.4-apache
+ARG APACHE_IMAGE=webdevops/php-apache-dev:7.4
 FROM ${APACHE_IMAGE}
-
+#composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+#instalando softwares auxiliares
+RUN apt-get update && apt-get upgrade -y && apt-get install nano tzdata -y 
+#Timezone
+RUN echo "America/Bahia" > /etc/TZ && cp /usr/share/zoneinfo/America/Bahia /etc/localtime
 
-RUN apt-get update && apt-get upgrade -y && apt-get install nano wget libpq-dev libzip-dev unzip libfreetype6-dev libjpeg62-turbo-dev libpng-dev -y 
+ARG DOCUMENT_ROOT=/var/www
+ENV WEB_DOCUMENT_ROOT=${DOCUMENT_ROOT}
 
-RUN docker-php-ext-install bcmath pdo_pgsql pdo_mysql mysqli pgsql exif zip && docker-php-ext-enable exif && \
-docker-php-ext-install -j$(nproc) iconv && \
-docker-php-ext-configure gd --with-freetype=/usr/include/ --with-jpeg=/usr/include/ && docker-php-ext-install -j$(nproc) gd \
-&& a2enmod rewrite
+COPY vhost.conf /etc/apache2/sites-enabled/vhost.conf
 
-RUN pecl install mongodb xdebug && docker-php-ext-enable mongodb xdebug && docker-php-ext-install pdo_pgsql pdo_mysql exif zip bcmath
+EXPOSE 80 443 9000
 
-RUN chmod -R 777 /var/www/html && rm /etc/localtime && ln -s /usr/share/zoneinfo/America/Bahia /etc/localtime && echo "America/Bahia" > /etc/timezone && \
-sed "s/;date.timezone =/date.timezone = America\/Bahia/g" /usr/local/etc/php/php.ini-development  > /usr/local/etc/php/php.ini
+WORKDIR ${DOCUMENT_ROOT}
 
-EXPOSE 80 9000
+ENTRYPOINT ["/opt/docker/bin/entrypoint.sh"]
+
+CMD ["supervisord"]
