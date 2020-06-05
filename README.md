@@ -1,7 +1,7 @@
 # docker with docker-compose
 
 <p align="center">
-<img width="250" height="200" src="https://secure.meetupstatic.com/photos/event/8/b/8/c/600_462815724.jpeg">
+<img width="250" height="200" src="https://i.pinimg.com/originals/f5/5e/80/f55e8059ea945abfd6804b887dd4a0af.gif">
 </p>
 creation of work development in docker
 
