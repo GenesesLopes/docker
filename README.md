@@ -23,7 +23,21 @@ creation of work development in docker
 
 #### :warning: Todos os projetos web devem ficar na pasta `sites`.
 
-#### :warning: Caso utilizar o autocomplete do terminal (ZSH), alterar configuração de extensão do docker em "arquivo->preferencias->configurações->extensões->Docker", alterar o campo "Docker › Attach Shell Command: Linux Container" de /bin/sh -c "[ -e /bin/bash ] && /bin/bash || /bin/sh" para /bin/sh -c "[ -e /bin/bash ] && /bin/bash || /bin/zsh 2> /dev/null || /bin/sh "
+#### :warning: Caso utilizar o autocomplete do terminal (ZSH), alterar configuração de extensão do docker em 
+```bash
+arquivo/preferencias/configurações/extensões/Docker
+```
+Altere o campo "Docker › Attach Shell Command: Linux Container" de 
+```bash
+/bin/sh -c "[ -e /bin/bash ] && /bin/bash || /bin/sh
+```
+para 
+```bash
+/bin/sh -c "[ -e /bin/bash ] && /bin/bash || /bin/zsh 2> /dev/null || /bin/sh 
+```
+
+#### :warning: Caso esteja tendo o aviso/erro no Vscode: `PHP › Validate: Executable Path` basta seguir esse passo a passo:
+- [Corrigir Php Validate VSCODE](https://gist.github.com/tuliocll/16952e8635eee21e6f3d59083ae6d3b8)
 
 # Iniciando :tada:
 
