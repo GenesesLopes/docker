@@ -57,6 +57,13 @@ para
 - [Visual Studio Code](https://code.visualstudio.com/download)
 - [Extensão do Docker pro Vscode](https://marketplace.visualstudio.com/items?itemName=PeterJausovec.vscode-docker&ssr=true)
 
+#### MacOS:
+
+- [Docker](https://www.thegeekdiary.com/how-to-install-docker-on-mac/)
+- [Git](https://git-scm.com/download/linux)
+- [Visual Studio Code](https://code.visualstudio.com/download)
+- [Extensão do Docker pro Vscode](https://marketplace.visualstudio.com/items?itemName=PeterJausovec.vscode-docker&ssr=true)
+
 # Clonar repositorio :arrows_clockwise:
 
 Escolha um local para clonar o repositorio e faça o clone;
@@ -68,7 +75,7 @@ Escolha um local para clonar o repositorio e faça o clone;
 - Clone o repositorio com o comando: `git clone https://github.com/GenesesLopes/docker.git`
 - Navegue até a pasta que acabou de clonar: `cd docker`
 
-#### Linux:
+#### Linux/MacOS:
 
 - Abra o terminal
 - Navegue até a pasta onde deseja clonar o repo (exemplo):
