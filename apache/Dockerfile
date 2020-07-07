@@ -1,4 +1,4 @@
-FROM php:apache
+FROM php:7.3-fpm-stretch
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
