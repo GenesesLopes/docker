@@ -1,4 +1,4 @@
-FROM php:fpm-alpine
+FROM php:apache
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 EXPOSE 9000
